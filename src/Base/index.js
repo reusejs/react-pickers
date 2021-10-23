@@ -1,133 +1,63 @@
-import React, { useState, useEffect } from "react";
-import useOutsideClicker from "../useOutsideClicker";
-import useSelect from "../useSelect";
-import TextInput from "../textInput";
-import FormLabel from "../formLabel";
-import { XIcon } from "@heroicons/react/solid";
+import { useState, useEffect } from "react";
+import BaseInput from "./base";
+import { ArrowSmDownIcon, CheckIcon } from "@heroicons/react/solid";
+import "../tailwind.css";
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
+export default function Default(props) {
+  return (
+    <BaseInput
+      ShowSelected={CustomShowLabel}
+      DropDownArrow={DropDownArrow}
+      OptionRenderer={OptionRenderer}
+      {...props}
+    />
+  );
 }
 
-// https://codesandbox.io/s/react-select-dropdown-bwlor?file=/src/SearchSelect.js
-// https://codesandbox.io/s/elegant-pine-9hjpb?file=/src/SearchSelect/index.js
+const OptionRenderer = ({ value, selected }) => {
+  const [found, setFound] = useState(false);
 
-const Index = ({
-  id,
-  label,
-  value,
-  onChange,
-  multiple = false,
-  dataSource,
-  OptionRenderer,
-  ShowSelected = null,
-  placeholder = "Type someting...",
-  defaultSelected = [],
-  disabled = false,
-  DropDownArrow,
-}) => {
-  const {
-    open,
-    setOpen,
-    query,
-    setQuery,
-    options,
-    addOrRemove,
-    selected,
-    setSelected,
-  } = useSelect(onChange, dataSource, defaultSelected);
-
-  const visRef = useOutsideClicker(() => {
-    setOpen(false);
-  });
+  useEffect(() => {
+    let localFound = selected.some((current) => current.value === value.value);
+    setFound(localFound === false ? false : true);
+  }, [selected]);
 
   return (
-    <div style={disabled ? { pointerEvents: "none", opacity: "0.5" } : {}}>
-      <FormLabel
-        htmlFor={id}
-        labelCorner={() => {
-          if (selected.length && !open) {
-            return (
-              <span
-                className="text-sm text-gray-900 cursor-pointer dark:text-white"
-                onClick={() => setSelected([])}
-              >
-                Clear
-              </span>
-            );
-          } else if (open) {
-            return (
-              <span
-                className="text-sm text-gray-900 cursor-pointer dark:text-white"
-                onClick={() => setOpen(false)}
-              >
-                Close
-              </span>
-            );
-          } else {
-            return <></>;
-          }
-        }}
-      >
-        {label}
-      </FormLabel>
-
-      {/* Start Element */}
-      <div className="mt-1">
-        {/* Start Default */}
-        {open === false && (
-          <div
-            className={classNames(
-              "relative block w-full rounded-md sm:text-sm border py-2 px-3 cursor-pointer",
-              "border-gray-300 dark:border-gray-700 text-black dark:text-white",
-              {
-                "dark:bg-black bg-white focus:ring-blue-500 focus:border-blue-500": true,
-              }
-            )}
-            onClick={() => setOpen(true)}
-          >
-            <ShowSelected selected={selected} />
-            {DropDownArrow}
-          </div>
+    <div className="relative flex flex-row items-center p-2 cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700">
+      <span className="flex flex-row items-center">
+        {value.avatar && (
+          <img className="h-4 mr-2" src={value.avatar} alt={value.label} />
         )}
-        {/* End Default */}
-
-        {open === true && (
-          <div className="relative" ref={visRef}>
-            {/* Start Input */}
-            <div>
-              <TextInput
-                autoFocus={true}
-                placeholder={placeholder}
-                defaultValue={(value && value.label) || query}
-                onChange={(e) => {
-                  setQuery(e);
-                }}
-              />
-              <div className={` ${!open ? "arrow" : null}`} />
-            </div>
-            {/* End Input */}
-
-            {/* Start Dropdown */}
-            <div className="absolute z-50 block w-full overflow-auto bg-white border border-gray-300 rounded-md shadow dark:bg-black max-h-32 dark:border-gray-700">
-              {options.map((option) => (
-                <div
-                  onClick={() => {
-                    addOrRemove(multiple, option);
-                  }}
-                  key={`option${option.value}`}
-                >
-                  <OptionRenderer value={option} selected={selected} />
-                </div>
-              ))}
-            </div>
-            {/* End Dropdown */}
-          </div>
-        )}
-      </div>
-      {/* End Element */}
+        <span className="text-sm text-gray-900 dark:text-gray-200">
+          {value.label}
+        </span>
+      </span>
+      {found === true && (
+        <span className="absolute inset-y-0 right-0 flex items-center pr-4">
+          <CheckIcon className="w-5 h-5 text-gray-900 dark:text-white" />
+        </span>
+      )}
     </div>
   );
 };
 
-export default Index;
+const DropDownArrow = (
+  <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+    <ArrowSmDownIcon className="w-5 h-5 text-gray-400" />
+  </span>
+);
+
+const CustomShowLabel = ({ selected }) => {
+  const [text, setText] = useState("None Selected");
+
+  useEffect(() => {
+    if (selected.length > 0) {
+      let tempText = selected.map((val) => val.label).join("; ");
+      setText(tempText);
+    } else {
+      setText("None Selected");
+    }
+  }, [selected]);
+
+  return <>{text}</>;
+};

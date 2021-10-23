@@ -1,5 +1,6 @@
 import FormLabel from "./formLabel";
 import { useRef, useEffect } from "react";
+import "./tailwind.css";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -28,11 +29,7 @@ export default function BaseInput({
           {label}
         </FormLabel>
       )}
-      <div
-        className={classNames("relative", {
-          "mt-1": label !== null,
-        })}
-      >
+      <div className={classNames("relative", label !== null ? "mt-1" : "")}>
         {inputLeftIcon !== null && (
           <div className="absolute inset-y-0 top-0 left-0 flex items-center pl-3 pointer-events-none">
             {inputLeftIcon}
@@ -44,23 +41,15 @@ export default function BaseInput({
           id={id}
           className={classNames(
             "block w-full rounded text-sm px-3 py-2",
-            {
-              "border-red-600 text-red-900 dark:text-red-200 placeholder-red-300":
-                errorText !== "",
-            },
-            {
-              "border-gray-300 dark:border-gray-700 text-black dark:text-white":
-                errorText === "",
-            },
-            {
-              "dark:bg-black bg-white focus:ring-blue-400 focus:border-blue-400 shadow outline-none": true,
-            },
-            {
-              "pl-10": inputLeftIcon,
-            },
-            {
-              "pr-10": inputRightIcon,
-            }
+            "dark:bg-black bg-white focus:ring-blue-400 focus:border-blue-400 shadow outline-none",
+            errorText !== ""
+              ? "border-red-600 text-red-900 dark:text-red-200 placeholder-red-300"
+              : "",
+            errorText === ""
+              ? "border-gray-400 dark:border-gray-700 text-black dark:text-white"
+              : "",
+            inputLeftIcon ? "pl-10" : "",
+            inputRightIcon ? "pr-10" : ""
           )}
           placeholder={placeholder}
           value={defaultValue}

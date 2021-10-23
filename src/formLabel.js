@@ -1,4 +1,5 @@
 import React from "react";
+import "./tailwind.css";
 
 export default function index({ children, labelCorner = () => {}, ...props }) {
   return (
