@@ -8,7 +8,7 @@
 
 # React Buttons
 
-View Storybook at: https://master--617258d6729860003a3d6e10.chromatic.com
+View Storybook at: https://master--6173adb291ca4f004a2e34dd.chromatic.com
 
 ### Where to write components?
 
@@ -67,7 +67,7 @@ react-button is freely distributable under the terms of the [MIT license][licens
 [npm-downloads-url]: https://npmcharts.com/compare/@reusejs/react-pickers?minimal=true
 
 [view-storybook-image]: https://img.shields.io/badge/View-Storybook-F59E0B.svg
-[view-storybook-url]: https://master--617258d6729860003a3d6e10.chromatic.com
+[view-storybook-url]: https://master--6173adb291ca4f004a2e34dd.chromatic.com
 
 [join-discord-image]: https://img.shields.io/badge/Join-Discord-7389D8.svg
 [join-discord-url]: https://discord.gg/VUa9SHvvDb
