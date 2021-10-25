@@ -1,20 +1,21 @@
 import { useState, useEffect } from "react";
-import BaseInput from "./base";
-import { ArrowSmDownIcon, CheckIcon } from "@heroicons/react/solid";
+import BasePicker from "../base";
+import TextInput from "../textInput";
+import { CheckIcon, XIcon } from "@heroicons/react/solid";
 import "../tailwind.css";
 
 export default function Default(props) {
   return (
-    <BaseInput
-      ShowSelected={CustomShowLabel}
-      DropDownArrow={DropDownArrow}
-      OptionRenderer={OptionRenderer}
+    <BasePicker
+      SelectedDataRenderer={SelectedDataRenderer}
+      OptionsRenderer={OptionsRenderer}
+      SearchRenderer={SearchRenderer}
       {...props}
     />
   );
 }
 
-const OptionRenderer = ({ value, selected }) => {
+const OptionsRenderer = ({ value, selected }) => {
   const [found, setFound] = useState(false);
 
   useEffect(() => {
@@ -41,13 +42,30 @@ const OptionRenderer = ({ value, selected }) => {
   );
 };
 
-const DropDownArrow = (
-  <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-    <ArrowSmDownIcon className="w-5 h-5 text-gray-400" />
-  </span>
-);
+const SearchRenderer = ({ query, onSearch, cancelSearch }) => {
+  return (
+    <div>
+      <TextInput
+        defaultValue={query}
+        placeholder="Type someting..."
+        onChange={(e) => {
+          onSearch(e);
+        }}
+      />
 
-const CustomShowLabel = ({ selected }) => {
+      <span
+        className="absolute inset-y-0 right-0 flex items-center pr-2 cursor-pointer"
+        onClick={() => {
+          cancelSearch();
+        }}
+      >
+        <XIcon className="w-5 h-5 text-gray-400" />
+      </span>
+    </div>
+  );
+};
+
+const SelectedDataRenderer = ({ selected }) => {
   const [text, setText] = useState("None Selected");
 
   useEffect(() => {

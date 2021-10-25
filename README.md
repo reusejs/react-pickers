@@ -6,9 +6,73 @@
 [![Storybook][storybook-action-image]][storybook-action-url]
 [![NPM Publish][npm-publish-action-image]][npm-publish-action-url]
 
-# React Buttons
+# React Pickers
 
 View Storybook at: https://master--6173adb291ca4f004a2e34dd.chromatic.com
+
+React Pickers consist of UI Components to solve use cases of "picking"! Be it a radio button, checkbox, dropdown, multi select dropdown, cards. The end goal is to pick one or more options, and most of the times we also want to preselect some options.
+
+# Usage
+
+## Data Source
+
+The implementation of this picker is done in multiple layers, the bottom most one which drives the logic is a renderless hook. So, you can use that if needed and build any kind of picker you need. The most important aspect of this hook is the prop: `dataSource`. 
+
+When you implement any picker - the question you would eventually face is where does the picker gets it's options from! We solved it simply introducing a callback function which the component itself calls or you can trigger it too. 
+
+#### Static Data
+
+```
+dataSource={(q) => { 
+    return [
+        { 'label': 'Asia', "value": 'asia' }
+        { 'label': 'Europe', "value": 'europe' }
+    ]
+}}
+```
+
+You can have something as simple as above, which serves as static data. Do you need to mention the key as "value"? You can override that too if you want. But, "value" seems to cover most of the use cases which we faced.
+
+#### Dynamic Data
+
+```
+dataSource={async (q) => { 
+    let response = await callSomeAPI();
+    return restructureResponseAsOptions(response);
+}}
+```
+
+### Single Select implementation
+
+```
+<Picker
+    label="Select Continent"
+    dataSource={async (q) => { 
+        let response = await callSomeAPI();
+        return restructureResponseAsOptions(response);
+    }}
+    defaultSelected={[
+        { 'label': 'Asia', "value": 'asia' }
+    ]}
+/>
+```
+
+### Multiple Select implementation
+
+```
+<Picker
+    label="Select Continent(s)"
+    dataSource={async (q) => { 
+        let response = await callSomeAPI();
+        return restructureResponseAsOptions(response);
+    }}
+    defaultSelected={[
+        { 'label': 'Asia', "value": 'asia' }
+    ]}
+    multiple
+/>
+```
+
 
 ### Where to write components?
 

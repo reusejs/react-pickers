@@ -6,14 +6,15 @@ export default function (
   defaultSelected = [],
   refresh = "",
   defaultOpen = false,
-  defaultQuery = ""
+  defaultQuery = "",
+  valueKey = "value"
 ) {
   const [open, setOpen] = useState(defaultOpen);
   const [query, setQuery] = useState(defaultQuery);
   const [options, setOptions] = useState([]);
   const [selected, setSelected] = useState(defaultSelected);
 
-  const onTyping = async (query, force = false) => {
+  const onTyping = async (query) => {
     let dropdownOptions = await dataSource(query);
     setOptions(dropdownOptions);
   };
@@ -39,7 +40,7 @@ export default function (
       onChange(option);
       setOpen(false);
     } else {
-      if (!selected.some((current) => current.value === option.value)) {
+      if (!selected.some((current) => current[valueKey] === option[valueKey])) {
         if (multiple) {
           onChange([...selected, option]);
           setSelected([...selected, option]);
@@ -47,7 +48,7 @@ export default function (
       } else {
         let selectionAfterRemoval = selected;
         selectionAfterRemoval = selectionAfterRemoval.filter(
-          (current) => current.value !== option.value
+          (current) => current[valueKey] !== option[valueKey]
         );
         onChange([...selectionAfterRemoval]);
         setSelected([...selectionAfterRemoval]);

@@ -1,5 +1,5 @@
 import React from 'react';
-import Base from './index';
+import Default from './index';
 
 const fetchContinents = (q = "") => {
 
@@ -23,16 +23,16 @@ const fetchContinents = (q = "") => {
 }
 
 export default {
-    title: 'Pickers/Base',
-    component: Base,
+    title: 'Pickers/Default',
+    component: Default,
 };
 
-const Template = (args) => <div className="w-64"><Base {...args} /></div>
+const Template = (args) => <div className="w-64"><Default {...args} /></div>
 
 export const Single = Template.bind({});
 
 Single.args = {
-    label: 'Timezone',
+    label: 'Select Continent',
     dataSource: (q) => {
         return fetchContinents(q);
     },
