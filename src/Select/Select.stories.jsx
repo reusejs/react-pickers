@@ -1,5 +1,5 @@
 import React from 'react';
-import Default from './index';
+import Select from './index';
 
 const fetchContinents = (q = "") => {
 
@@ -23,11 +23,11 @@ const fetchContinents = (q = "") => {
 }
 
 export default {
-    title: 'Pickers/Default',
-    component: Default,
+    title: 'Pickers/Select',
+    component: Select,
 };
 
-const Template = (args) => <div className="w-64"><Default {...args} /></div>
+const Template = (args) => <div className="w-64"><Select {...args} /></div>
 
 export const Single = Template.bind({});
 
@@ -44,9 +44,9 @@ Single.args = {
 export const SingleSelected = Template.bind({});
 
 SingleSelected.args = {
-    label: 'Timezone',
-    dataSource: () => {
-        return fetchContinents();
+    label: 'Select Continent',
+    dataSource: (q) => {
+        return fetchContinents(q);
     },
     defaultSelected: [
         { 'label': 'Asia', "value": 'asia' }
@@ -60,9 +60,9 @@ SingleSelected.args = {
 export const MultiSelect = Template.bind({});
 
 MultiSelect.args = {
-    label: 'Timezone',
-    dataSource: () => {
-        return fetchContinents();
+    label: 'Select Continent',
+    dataSource: (q) => {
+        return fetchContinents(q);
     },
     onChange: (v) => {
         console.log(v)
@@ -74,9 +74,9 @@ MultiSelect.args = {
 export const MultiSelected = Template.bind({});
 
 MultiSelected.args = {
-    label: 'Timezone',
-    dataSource: () => {
-        return fetchContinents();
+    label: 'Select Continent',
+    dataSource: (q) => {
+        return fetchContinents(q);
     },
     defaultSelected: [
         { 'label': 'Europe', "value": 'europe' },

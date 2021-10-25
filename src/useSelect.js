@@ -4,10 +4,10 @@ export default function (
   onChange,
   dataSource,
   defaultSelected = [],
-  refresh = "",
+  valueKey = "value",
   defaultOpen = false,
   defaultQuery = "",
-  valueKey = "value"
+  refresh = ""
 ) {
   const [open, setOpen] = useState(defaultOpen);
   const [query, setQuery] = useState(defaultQuery);
