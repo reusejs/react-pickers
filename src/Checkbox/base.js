@@ -8,6 +8,8 @@ function classNames(...classes) {
 const Index = ({
   id,
   OptionsRenderer,
+  SelectedDataRenderer = null,
+  SearchRenderer = null,
   disabled = false,
   onChange,
   multiple = false,
