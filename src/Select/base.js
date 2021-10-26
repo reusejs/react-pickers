@@ -1,8 +1,8 @@
 import React from "react";
-import useOutsideClicker from "./useOutsideClicker";
-import useSelect from "./useSelect";
-import TextInput from "./textInput";
-import FormLabel from "./formLabel";
+import useOutsideClicker from "../useOutsideClicker";
+import useSelect from "../useSelect";
+import TextInput from "../textInput";
+import FormLabel from "../formLabel";
 import { ArrowSmDownIcon } from "@heroicons/react/solid";
 
 function classNames(...classes) {

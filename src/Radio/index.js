@@ -1,21 +1,23 @@
 import { useState, useEffect } from "react";
-import SelectBase from "./base";
+import RadioBase from "./base";
 import TextInput from "../textInput";
 import { CheckIcon, XIcon } from "@heroicons/react/solid";
 import "../tailwind.css";
 
 export default function Default(props) {
   return (
-    <SelectBase
+    <RadioBase
       SelectedDataRenderer={SelectedDataRenderer}
       OptionsRenderer={OptionsRenderer}
       SearchRenderer={SearchRenderer}
+      optionsWrapperClasses="space-y-4"
       {...props}
+      multiple={false}
     />
   );
 }
 
-const OptionsRenderer = ({ value, selected }) => {
+const OptionsRenderer = ({ value, selected, props }) => {
   const [found, setFound] = useState(false);
 
   useEffect(() => {
@@ -24,20 +26,21 @@ const OptionsRenderer = ({ value, selected }) => {
   }, [selected]);
 
   return (
-    <div className="relative flex flex-row items-center p-2 cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700">
-      <span className="flex flex-row items-center">
-        {value.avatar && (
-          <img className="h-4 mr-2" src={value.avatar} alt={value.label} />
-        )}
-        <span className="text-sm text-gray-900 dark:text-gray-200">
-          {value.label}
-        </span>
-      </span>
-      {found === true && (
-        <span className="absolute inset-y-0 right-0 flex items-center pr-4">
-          <CheckIcon className="w-5 h-5 text-gray-900 dark:text-white" />
-        </span>
-      )}
+    <div className="flex items-center">
+      <input
+        id={value.value}
+        name={props.name}
+        type="radio"
+        className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+        checked={found === true}
+        onChange={() => {}}
+      />
+      <label
+        htmlFor="push-everything"
+        className="ml-3 block text-sm font-medium text-gray-700"
+      >
+        {value.label}
+      </label>
     </div>
   );
 };
