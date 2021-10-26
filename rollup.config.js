@@ -9,6 +9,8 @@ export default {
     "src/Select/index.js",
     "src/Radio/base.js",
     "src/Radio/index.js",
+    "src/Checkbox/base.js",
+    "src/Checkbox/index.js",
   ],
   output: [
     {
