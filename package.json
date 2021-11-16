@@ -1,6 +1,6 @@
 {
   "name": "@reusejs/react-pickers",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "A library of reactjs pickers",
   "main": "build/index.js",
   "files": [
