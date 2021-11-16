@@ -1,6 +1,7 @@
 import resolve from "@rollup/plugin-node-resolve";
 import babel from "@rollup/plugin-babel";
 import postcss from "rollup-plugin-postcss";
+import commonjs from "rollup-plugin-commonjs";
 
 export default {
   input: [
@@ -24,10 +25,11 @@ export default {
   external: ["react", "react-dom"],
   plugins: [
     babel({
-      babelHelpers: "bundled",
+      babelHelpers: "runtime",
       exclude: "node_modules/**",
     }),
     resolve(),
+    commonjs({}),
     postcss({
       config: {
         path: "./postcss.config.js",
