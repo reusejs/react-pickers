@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import React from "react";
 import CheckboxBase from "./base";
 import TextInput from "../textInput";
 import { CheckIcon, XIcon } from "@heroicons/react/solid";
