@@ -41,6 +41,19 @@ Single.args = {
     },
 };
 
+export const SingleWithError = Template.bind({});
+
+SingleWithError.args = {
+    label: 'Select Continent',
+    dataSource: (q) => {
+        return fetchContinents(q);
+    },
+    onChange: (v) => {
+        console.log(v)
+    },
+    errorText: "Something is wrong"
+};
+
 export const SingleSelected = Template.bind({});
 
 SingleSelected.args = {
@@ -88,3 +101,30 @@ MultiSelected.args = {
     multiple: true
 };
 
+
+const DarkTemplate = (args) => <div className="w-96 dark p-8 bg-black"><Select {...args} /></div>
+
+export const DarkSingle = DarkTemplate.bind({});
+
+DarkSingle.args = {
+    label: 'Select Continent',
+    dataSource: (q) => {
+        return fetchContinents(q);
+    },
+    onChange: (v) => {
+        console.log(v)
+    },
+};
+
+export const DarkSingleWithError = DarkTemplate.bind({});
+
+DarkSingleWithError.args = {
+    label: 'Select Continent',
+    dataSource: (q) => {
+        return fetchContinents(q);
+    },
+    onChange: (v) => {
+        console.log(v)
+    },
+    errorText: 'This is required'
+};

@@ -1,13 +1,8 @@
 import React from "react";
 import useOutsideClicker from "../useOutsideClicker";
 import useSelect from "../useSelect";
-import TextInput from "../textInput";
-import FormLabel from "../formLabel";
 import { ArrowSmDownIcon } from "@heroicons/react/solid";
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
+import { classNames } from "@reusejs/react-utils";
 
 const LabelCloseComponent = () => {
   return "Close";
@@ -31,6 +26,7 @@ const Index = ({
   multiple = false,
   dataSource,
   defaultSelected = [],
+  errorText = undefined,
   ...props
 }) => {
   const {
@@ -48,57 +44,48 @@ const Index = ({
     setOpen(false);
   });
 
-  const componentWrapperClasses = props.componentWrapperClasses || "";
-  const labelWrapperClasses =
-    props.labelWrapperClasses || "flex justify-between";
-  const disabledStyles =
-    props.disabledStyles || "pointer-events-none opacity-50";
-
-  const labelTextClasses =
-    props.labelTextClasses ||
-    "block text-sm font-normal text-gray-900 dark:text-gray-200";
-
-  const clearTextClasses =
-    props.clearTextClasses ||
-    "text-sm text-gray-900 cursor-pointer dark:text-white";
-
-  const closeTextClasses =
-    props.closeTextClasses ||
-    "text-sm text-gray-900 cursor-pointer dark:text-white";
-
-  const closedPickerClasses =
-    props.closedPickerClasses ||
-    "relative block w-full rounded-md sm:text-sm border py-2 px-3 cursor-pointer border-gray-300 dark:border-gray-700 text-black dark:text-white dark:bg-black bg-white focus:ring-blue-500 focus:border-blue-500";
-
-  const pickerWrapperClasses = props.pickerWrapperClasses || "mt-1";
-
-  const optionsWrapperClasses =
-    props.optionsWrapperClasses ||
-    "absolute z-50 block w-full overflow-auto bg-white border border-gray-300 rounded-md shadow dark:bg-black max-h-32 dark:border-gray-700";
-
-  const noDataWrapperClasses =
-    props.noDataWrapperClasses || "h-32 flex justify-center items-center";
-
   return (
     <div
       className={classNames(
-        componentWrapperClasses,
-        disabled ? disabledStyles : ""
+        props.componentWrapperClasses || "",
+        disabled ? props.disabledStyles || "pointer-events-none opacity-50" : ""
       )}
     >
       {/* Begin Label */}
-      <div className={labelWrapperClasses}>
-        <label htmlFor={id} className={labelTextClasses}>
+      <div
+        className={classNames(
+          props.labelWrapperClasses || "flex justify-between"
+        )}
+      >
+        <label
+          htmlFor={id}
+          className={classNames(
+            props.labelTextClasses ||
+              "block text-sm font-normal text-gray-900 dark:text-gray-200"
+          )}
+        >
           {props.label || "Select an Option"}
         </label>
         {selected.length > 0 && !open && (
-          <span className={clearTextClasses} onClick={() => setSelected([])}>
+          <span
+            className={classNames(
+              props.clearTextClasses ||
+                "text-sm text-gray-900 cursor-pointer dark:text-white"
+            )}
+            onClick={() => setSelected([])}
+          >
             {props.clearText || <LabelClearComponent />}
           </span>
         )}
 
         {open && (
-          <span className={closeTextClasses} onClick={() => setOpen(false)}>
+          <span
+            className={classNames(
+              props.closeTextClasses ||
+                "text-sm text-gray-900 cursor-pointer dark:text-white"
+            )}
+            onClick={() => setOpen(false)}
+          >
             {props.closeComponent || <LabelCloseComponent />}
           </span>
         )}
@@ -106,9 +93,23 @@ const Index = ({
       {/* End Label */}
 
       {/* Begin Picker */}
-      <div className={pickerWrapperClasses}>
+      <div className={classNames(props.pickerWrapperClasses || "mt-1")}>
         {open === false && (
-          <div className={closedPickerClasses} onClick={() => setOpen(true)}>
+          <div
+            className={classNames(
+              props.closedPickerClasses ||
+                "relative block w-full rounded-md sm:text-sm py-2 px-3 cursor-pointer dark:bg-black bg-white focus:ring-blue-500 focus:border-blue-500",
+              errorText === undefined
+                ? props.noErrorClasses ||
+                    "border border-gray-400 dark:border-gray-50 text-black dark:text-white"
+                : "",
+              errorText !== undefined
+                ? props.withErrorClasses ||
+                    "border border-red-600 dark:border-red-200 text-red-900 dark:text-red-200 placeholder-red-300"
+                : ""
+            )}
+            onClick={() => setOpen(true)}
+          >
             <SelectedDataRenderer selected={selected} />
             {props.suffixIcon || (
               <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
@@ -116,6 +117,10 @@ const Index = ({
               </span>
             )}
           </div>
+        )}
+
+        {open === false && errorText !== "" && (
+          <p className="mt-2 text-sm text-red-600">{errorText}</p>
         )}
 
         {open === true && (
@@ -128,7 +133,12 @@ const Index = ({
               cancelSearch={() => setOpen(false)}
             />
 
-            <div className={optionsWrapperClasses}>
+            <div
+              className={classNames(
+                props.optionsWrapperClasses ||
+                  "absolute z-50 block w-full overflow-auto bg-white border border-gray-300 rounded-md shadow dark:bg-black max-h-32 dark:border-gray-700"
+              )}
+            >
               {options.length > 0 && (
                 <>
                   {options.map((option) => (

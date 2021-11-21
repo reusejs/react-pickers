@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import React from "react";
 import SelectBase from "./base";
-import TextInput from "../textInput";
+import { BaseInput as TextInput } from "@reusejs/react-text-inputs";
+// import TextInput from "../textInput";
 import { CheckIcon, XIcon } from "@heroicons/react/solid";
 import "../tailwind.css";
 

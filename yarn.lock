@@ -1420,6 +1420,16 @@
     prop-types "^15.6.1"
     react-lifecycles-compat "^3.0.4"
 
+"@reusejs/react-text-inputs@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@reusejs/react-text-inputs/-/react-text-inputs-0.0.5.tgz#a3722a5aca5686b02e53c02f43c51554ce357243"
+  integrity sha512-mkT1d2kw/AAEwAFxGfObImOhzsfE28s8KGxVrBrJ/dM0y9hX8jflBPo0PrTRSvGx5/LsT9C17euO7ldomSGO4A==
+
+"@reusejs/react-utils@^0.0.7":
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/@reusejs/react-utils/-/react-utils-0.0.7.tgz#b653a03c57353e46502bfdb9935ef73b4b046152"
+  integrity sha512-D8ewDAuHS/+WsVnXTr4Wr2IKjPTHwE/x2sWIzqWkhxDWRQsGMwy39s+9yaiq6FyyX3RQOrGUDhbW0depwS1oJA==
+
 "@rollup/plugin-babel@^5.3.0":
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-babel/-/plugin-babel-5.3.0.tgz#9cb1c5146ddd6a4968ad96f209c50c62f92f9879"
