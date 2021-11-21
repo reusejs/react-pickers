@@ -1425,10 +1425,10 @@
   resolved "https://registry.yarnpkg.com/@reusejs/react-text-inputs/-/react-text-inputs-0.0.5.tgz#a3722a5aca5686b02e53c02f43c51554ce357243"
   integrity sha512-mkT1d2kw/AAEwAFxGfObImOhzsfE28s8KGxVrBrJ/dM0y9hX8jflBPo0PrTRSvGx5/LsT9C17euO7ldomSGO4A==
 
-"@reusejs/react-utils@^0.0.7":
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/@reusejs/react-utils/-/react-utils-0.0.7.tgz#b653a03c57353e46502bfdb9935ef73b4b046152"
-  integrity sha512-D8ewDAuHS/+WsVnXTr4Wr2IKjPTHwE/x2sWIzqWkhxDWRQsGMwy39s+9yaiq6FyyX3RQOrGUDhbW0depwS1oJA==
+"@reusejs/react-utils@^0.0.8":
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/@reusejs/react-utils/-/react-utils-0.0.8.tgz#2b411f079c261406267bc37076367689aebe33ab"
+  integrity sha512-PokP4C0b/GknchZzi66AZb9+m/Ogy0d0xJ9xFWYrPDgt4nmP4ejz+zauta/4fvhTK/FhBOi0FECtEolDbnwgcQ==
 
 "@rollup/plugin-babel@^5.3.0":
   version "5.3.0"
@@ -8765,7 +8765,7 @@ regenerate@^1.4.2:
   resolved "https://registry.yarnpkg.com/regenerate/-/regenerate-1.4.2.tgz#b9346d8827e8f5a32f7ba29637d398b69014848a"
   integrity sha512-zrceR/XhGYU/d/opr2EKO7aRHUeiBI8qjtfHqADTwZd6Szfy16la6kqD0MIUs5z5hx6AaKa+PixpPrR289+I0A==
 
-regenerator-runtime@^0.13.4, regenerator-runtime@^0.13.7:
+regenerator-runtime@^0.13.4, regenerator-runtime@^0.13.7, regenerator-runtime@^0.13.9:
   version "0.13.9"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.9.tgz#8925742a98ffd90814988d7566ad30ca3b263b52"
   integrity sha512-p3VT+cOEgxFsRRA9X4lkI1E+k2/CtnKtU4gcxyaCUreilL/vqI6CdZ3wxVUx3UOUg+gnUOQQcRI7BmSI656MYA==

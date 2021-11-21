@@ -22,7 +22,13 @@ export default {
     },
   ],
   preserveModules: true,
-  external: ["react", "react-dom"],
+  external: [
+    "react",
+    "react-dom",
+    "regenerator-runtime",
+    "@reusejs/react-utils",
+    "@reusejs/react-text-inputs",
+  ],
   plugins: [
     babel({
       babelHelpers: "runtime",
@@ -30,7 +36,7 @@ export default {
     }),
     resolve(),
     commonjs({
-      exclude: ["node_modules/@reusejs/react-utils/build/node_modules/**"],
+      // exclude: ["node_modules/@reusejs/react-utils/build/node_modules/**"],
     }),
     postcss({
       config: {
