@@ -29,7 +29,9 @@ export default {
       exclude: "node_modules/**",
     }),
     resolve(),
-    commonjs({}),
+    commonjs({
+      exclude: ["node_modules/@reusejs/react-utils/build/node_modules/**"],
+    }),
     postcss({
       config: {
         path: "./postcss.config.js",
