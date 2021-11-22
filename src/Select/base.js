@@ -30,6 +30,11 @@ const Index = ({
   onChange,
   multiple = false,
   dataSource,
+  errorText = "Hi",
+  labelCorner = () => {},
+  FormLabelComponent = (props) => {
+    return <FormLabel {...props} />;
+  },
   defaultSelected = [],
   ...props
 }) => {
@@ -86,8 +91,20 @@ const Index = ({
         disabled ? disabledStyles : ""
       )}
     >
+      {/* Error Label */}
+      {props.label !== null && (
+        <FormLabelComponent
+          htmlFor={id}
+          labelCorner={labelCorner}
+          errorText={errorText}
+          formLabelClasses={props.formLabelClasses}
+        >
+          {props.label}
+        </FormLabelComponent>
+      )}
+
       {/* Begin Label */}
-      <div className={labelWrapperClasses}>
+      {/* <div className={labelWrapperClasses}>
         <label htmlFor={id} className={labelTextClasses}>
           {props.label || "Select an Option"}
         </label>
@@ -102,14 +119,14 @@ const Index = ({
             {props.closeComponent || <LabelCloseComponent />}
           </span>
         )}
-      </div>
+      </div> */}
       {/* End Label */}
 
       {/* Begin Picker */}
       <div className={pickerWrapperClasses}>
         {open === false && (
           <div className={closedPickerClasses} onClick={() => setOpen(true)}>
-            <SelectedDataRenderer selected={selected} />
+            <SelectedDataRenderer selected={selected} preOption={props.preOption} />
             {props.suffixIcon || (
               <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                 <ArrowSmDownIcon className="w-5 h-5 text-gray-400" />

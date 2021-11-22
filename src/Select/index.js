@@ -66,15 +66,15 @@ const SearchRenderer = ({ query, onSearch, cancelSearch }) => {
   );
 };
 
-const SelectedDataRenderer = ({ selected }) => {
-  const [text, setText] = useState("None Selected");
+const SelectedDataRenderer = ({ selected, preOption="Select" }) => {
+  const [text, setText] = useState(preOption);
 
   useEffect(() => {
     if (selected.length > 0) {
       let tempText = selected.map((val) => val.label).join("; ");
       setText(tempText);
     } else {
-      setText("None Selected");
+      setText(preOption);
     }
   }, [selected]);
 
