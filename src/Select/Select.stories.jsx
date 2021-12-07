@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Select from './index';
 
 const fetchContinents = (q = "") => {
@@ -27,13 +27,23 @@ export default {
     component: Select,
 };
 
-const Template = (args) => <div className="w-64"><Select {...args} /></div>
+const Template = (args) => {
+
+    const [refreshCounter, setRefreshCounter] = useState(0)
+
+    return <div className="w-64">
+        <button onClick={() => {
+            setRefreshCounter(curr => curr + 1);
+        }}>Increase</button>
+        <Select {...args} refresh={refreshCounter} /></div>
+}
 
 export const Single = Template.bind({});
 
 Single.args = {
     label: 'Select Continent',
     dataSource: (q) => {
+        console.log("data Source");
         return fetchContinents(q);
     },
     onChange: (v) => {
