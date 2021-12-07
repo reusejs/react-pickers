@@ -27,6 +27,10 @@ const Index = ({
   dataSource,
   defaultSelected = [],
   errorText = undefined,
+  valueKey = "value",
+  defaultOpen = false,
+  defaultQuery = "",
+  refresh = "",
   ...props
 }) => {
   const {
@@ -38,7 +42,15 @@ const Index = ({
     addOrRemove,
     selected,
     setSelected,
-  } = useSelect(onChange, dataSource, defaultSelected);
+  } = useSelect(
+    onChange,
+    dataSource,
+    defaultSelected,
+    valueKey,
+    defaultOpen,
+    defaultQuery,
+    refresh
+  );
 
   const visRef = useOutsideClicker(() => {
     setOpen(false);
