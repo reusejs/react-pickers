@@ -20,7 +20,6 @@ export default function (
   };
 
   useEffect(() => {
-    console.log("Refresh changed", refresh);
     onTyping();
   }, [refresh]);
 
