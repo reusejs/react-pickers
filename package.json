@@ -2,7 +2,8 @@
   "name": "@reusejs/react-pickers",
   "version": "0.0.15",
   "description": "A library of reactjs pickers",
-  "main": "build/index.js",
+  "main": "build/index.cjs.js",
+  "module": "build/index.esm.js",
   "files": [
     "build"
   ],
